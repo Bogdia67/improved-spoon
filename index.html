@@ -3,13 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Paddle</title>
-    <!-- 1. Charge la bibliothèque officielle de Paddle (CORRIGÉ ICI) -->
+    <title>Test Paddle Inline</title>
+    <!-- 1. Charge la bibliothèque officielle de Paddle -->
     <script src="https://paddle.com"></script>
+    <style>
+        /* Un petit style pour centrer le formulaire sur l'écran de votre téléphone */
+        #mon-formulaire-paddle {
+            margin-top: 20px;
+            min-height: 400px;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
 
-    <!-- 2. Les deux boutons physiques sur la page -->
+    <!-- 2. Les boutons pour choisir le tarif -->
     <button onclick="lancerPaiement('pri_01kyfk028z53s3efe371fz4n0m')">
       S'abonner au mois
     </button>
@@ -18,12 +26,15 @@
       S'abonner à l'année
     </button>
 
-    <!-- 3. Le script de configuration de Paddle -->
+    <!-- 3. La zone blanche vide où Paddle va dessiner le formulaire -->
+    <div id="mon-formulaire-paddle"></div>
+
+    <!-- 4. Le script de configuration -->
     <script type="text/javascript">
       Paddle.Environment.set("sandbox");
 
       Paddle.Initialize({ 
-        token: "test_40338cad6ee5e3a1dac969ee766" 
+        token: "test_c15be7381430bad2ce2b73c1519" 
       });
 
       function lancerPaiement(idDuPrix) {
@@ -33,13 +44,20 @@
               priceId: idDuPrix,
               quantity: 1
             }
-          ]
+          ],
+          // CONFIGURATION INLINE ICI
+          settings: {
+            displayMode: "inline",
+            frameTarget: "mon-formulaire-paddle", // Cible la zone ci-dessus
+            frameInitialHeight: 450
+          }
         });
       }
     </script>
 
 </body>
 </html>
+
 
 
 
