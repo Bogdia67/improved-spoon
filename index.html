@@ -1,34 +1,45 @@
-<script type="text/index.html">
-  // On indique à Paddle d'utiliser l'environnement de test
-  Paddle.Environment.set("sandbox");
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Paddle</title>
+    <!-- 1. Charge la bibliothèque officielle de Paddle -->
+    <script src="https://paddle.com"></script>
+</head>
+<body>
 
-  // Initialisation avec votre jeton client-side (celui qui commence par test_)
-  Paddle.Initialize({ 
-    token: "test_c15be7381430bad2ce2b73c1519“
-  });
+    <!-- 2. Les deux boutons physiques sur la page -->
+    <button onclick="lancerPaiement('pri_01kyfk028z53s3efe371fz4n0m')">
+      S'abonner au mois
+    </button>
 
-  // Fonction universelle pour lancer la fenêtre de paiement
-  function lancerPaiement(idDuPrix) {
-    Paddle.Checkout.open({
-      items: [
-        {
-          priceId: idDuPrix, // Charge le code du bouton sur lequel on a cliqué
-          quantity: 1
-        }
-      ]
-    });
-  }
-</script>
+    <button onclick="lancerPaiement('pri_01kyfkvjwy75px1373btjctepv')">
+      S'abonner à l'année
+    </button>
 
-<!-- BOUTON 1 : Mettez votre premier code pri_ ici -->
-<button onclick="lancerPaiement('pri_01kyfk028z53s3efe371fz4n0m')”>
-  S'abonner au mois
-</button>
+    <!-- 3. Le script de configuration de Paddle -->
+    <script type="text/javascript">
+      Paddle.Environment.set("sandbox");
 
-<!-- BOUTON 2 : Mettez votre deuxième code pri_ ici -->
-<button onclick="lancerPaiement('pri_01kyfkvjwy75px1373btjctepv')">
-  S'abonner à l'année
-</button>
+      Paddle.Initialize({ 
+        token: "test_c15be7381430bad2ce2b73c1519" 
+      });
+
+      function lancerPaiement(idDuPrix) {
+        Paddle.Checkout.open({
+          items: [
+            {
+              priceId: idDuPrix,
+              quantity: 1
+            }
+          ]
+        });
+      }
+    </script>
+
+</body>
+</html>
 
 
 
