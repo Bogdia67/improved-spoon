@@ -1,14 +1,30 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon Projet GitHub</title>
-</head>
-<body>
-    <h1>Bienvenue sur mon projet !</h1>
-    <p>Ce fichier a été créé directement sur GitHub.</p>
+<!-- 1. Charge la bibliothèque officielle de Paddle -->
+<script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
 
-    <script src="script.js"></script>
-</body>
-</html>
+<script type="text/javascript">
+  // Indique qu'on utilise l'environnement de test Sandbox
+  Paddle.Environment.set("sandbox"); 
+
+  // 2. ICI : Collez votre jeton client-side (Client-side token) fourni par Paddle
+  Paddle.Initialize({ 
+    token: "test_VOTRE_TOKEN_ICI" 
+  });
+
+  // Fonction pour déclencher la fenêtre de paiement
+  function acheterProduit() {
+    Paddle.Checkout.open({
+      items: [
+        {
+          // 3. ICI : Collez l'identifiant du prix (Price ID) généré à l'étape 01
+          priceId: "pri_VOTRE_PRICE_ID_ICI", 
+          quantity: 1
+        }
+      ]
+    });
+  }
+</script>
+
+<!-- Un bouton sur votre page pour déclencher l'achat -->
+<button onclick="acheterProduit()">Acheter mon produit de test</button>
+
+
